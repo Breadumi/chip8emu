@@ -26,6 +26,7 @@ func main() {
 
 	// Initialize the Chip8 system and load the game into memory
 	chip8 := initialize()
+	chip8.loadFontSet()
 	// myChip8.loadGame("pong")
 	ticker := time.NewTicker(time.Second / 60)
 	defer ticker.Stop()
@@ -51,24 +52,4 @@ func main() {
 
 		// for end
 	}
-}
-
-func initialize() *chip8 {
-	var memory [4096]byte
-	var register [16]byte
-	var stack [16]uint16
-	var key [16]byte
-	chip8 := &chip8{
-		opcode:      0,
-		memory:      memory,
-		register:    register,
-		idx:         0,
-		pc:          0,
-		delay_timer: 0,
-		sound_timer: 0,
-		stack:       stack,
-		sp:          0,
-		key:         key,
-	}
-	return chip8
 }
